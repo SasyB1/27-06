@@ -1,0 +1,44 @@
+﻿@using _27_06.Classi
+@model _27_06.Models.VenditeViewModel
+
+@{
+    ViewData["Title"] = "Acquisto Biglietto";
+    var sale = ViewBag.Sale as IEnumerable<Sale>;
+}
+
+<h1>Acquisto Biglietto</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Compra">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <select asp-for="Tipo" class="form-select">
+                    <option value="@((int)TipoBiglietto.Normale)">Normale</option>
+                    <option value="@((int)TipoBiglietto.Ridotto)">Ridotto</option>
+                </select>
+                <span asp-validation-for="SalaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalaId" class="control-label"></label>
+                <select asp-for="SalaId" class="form-select" asp-items="sale.Select(r => new SelectListItem{ Text = r.Nome, Value = r.Id.ToString()})"></select>
+                <span asp-validation-for="SalaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeSpettatore" class="control-label"></label>
+                <input asp-for="NomeSpettatore" class="form-control" />
+                <span asp-validation-for="NomeSpettatore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CognomeSpettatore" class="control-label"></label>
+                <input asp-for="CognomeSpettatore" class="form-control" />
+                <span asp-validation-for="CognomeSpettatore" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Procedi" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Indietro</a>
+            </div>
+        </form>
+    </div>
+</div>

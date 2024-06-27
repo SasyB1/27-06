@@ -1,8 +1,9 @@
 ﻿using _27_06.Classi;
+using _27_06.Services.Interface;
 
 namespace _27_06.Services
 {
-    public class SaleService
+    public class SaleService : ISaleService
     {
         private static readonly List<Sale> _sale =
         [
@@ -11,6 +12,6 @@ namespace _27_06.Services
             new Sale { Id = 3, Nome = "Sala Est", Posti = 120 },
         ];
 
-        public List<Sale> GetSale() => _sale;
+        public IEnumerable<Sale> GetSale() => _sale;
     }
 }

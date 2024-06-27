@@ -1,8 +1,12 @@
+using _27_06.Services;
+using _27_06.Services.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<SaleService>();
+builder.Services.AddTransient<ISaleService, SaleService>()
+ .AddTransient<IVenditeService, VenditeService>();
 
 var app = builder.Build();
 
